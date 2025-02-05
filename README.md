@@ -18,10 +18,10 @@ CUSTOM_SEARCH_ENGINE_ID=YOUR_ID
 の形でAPIキーなどを書き込んでください。
 
 ## 環境
-# 開発、動作確認環境
+### 開発、動作確認環境
 mac mini M2 Pro 16GB RAM 512GB SSD
 macOS 15.3
 Python 3.12.5
 
-# 動作環境
+### 動作環境
 OllamaとPythonの必要ライブラリが動作すればWindowsでも動作すると思います。
