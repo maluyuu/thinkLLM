@@ -6,7 +6,7 @@ from search_module import search_google_api, fetch_site_content
 load_dotenv()
 
 def main():
-    model_name = "hf.co/SakanaAI/TinySwallow-1.5B-Instruct-GGUF" # デフォルトモデル。ユーザーに確認後に変更可能
+    model_name = "gemma2" # デフォルトモデル。ユーザーに確認後に変更可能
     num_search_results = 3  # 検索結果から上位何件のサイト内容を取得するか
 
     while True:
@@ -48,7 +48,7 @@ def main():
         if search_results_content:
             print("検索結果を分析...\n")
             search_analysis_prompt = f"質問: {user_input}\n\n検索結果:\n{search_results_content}\n\n上記の質問と検索結果を踏まえ、回答を生成するための思考プロセスを日本語でステップ形式で記述してください。\nステップの中に、以下の項目を必ず含めてください:\n- **検索結果を要約するステップ:** 検索結果全体を要約し、質問に関連する主要な情報を特定してください。\n- **質問に直接答えるステップ:** 要約した情報に基づいて、質問に直接かつ簡潔に答えてください。\n- **回答を日本語で生成するステップ:** 回答は日本語で生成してください。\n検索結果をどのように利用して回答を生成するかを具体的に記述してください。\n思考プロセスのみを記述してください。"
-            search_analysis_response = ollama.chat(model_name=model_name, messages=[{'role': 'user', 'content': search_analysis_prompt}], stream=True)
+            search_analysis_response = ollama.chat(model=model_name, messages=[{'role': 'user', 'content': search_analysis_prompt}], stream=True)
             print("\n検索結果分析による思考プロセス:")
             for part in search_analysis_response:
                 search_analysis_result += part['message']['content']
@@ -63,7 +63,7 @@ def main():
             answer_prompt_base += f"検索結果分析による思考プロセス:\n{search_analysis_result}\n\n"
         answer_prompt = answer_prompt_base + f"ユーザーからの質問: {user_input}\n\n上記の思考プロセスと検索結果分析に基づいてユーザーに対する質問への回答を生成してください。なお、思考プロセスと検索結果分析を再度出力する必要はなく、回答のみを生成してください。回答は日本語で行なってください。"
 
-        answer_response = ollama.chat(model_name=model_name, messages=[{'role': 'user', 'content': answer_prompt}], stream=True)
+        answer_response = ollama.chat(model=model_name, messages=[{'role': 'user', 'content': answer_prompt}], stream=True)
         print("\n回答:")
         for part in answer_response:
             print(part['message']['content'], end="", flush=True)
