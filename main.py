@@ -6,7 +6,7 @@ from search_module import search_google_api, fetch_site_content
 load_dotenv()
 
 def main():
-    model_name = "hf.co/SakanaAI/TinySwallow-1.5B-Instruct-GGUF" # デフォルトモデル。ユーザーに確認後に変更可能
+    model_name = "gemma3:4b" # デフォルトモデル。ユーザーに確認後に変更可能
     num_search_results = 3  # 検索結果から上位何件のサイト内容を取得するか
 
     while True:

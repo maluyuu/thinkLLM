@@ -7,9 +7,9 @@
 ## 使い方
 1. Ollamaをインストールします。  
    [Ollamaの公式サイト](https://ollama.com)からインストールできます。
-2. デフォルトモデル（TinySwallow-1.5B）を使用する場合、ターミナルで以下を実行します。  
+2. デフォルトモデル（gemma3:4b）を使用する場合、ターミナルで以下を実行します。  
    ```bash
-   ollama run hf.co/SakanaAI/TinySwallow-1.5B-Instruct-GGUF
+   ollama run gemma3:4b
    ```
 3. `requirements.txt`に記載されたライブラリをインストールします。  
    ```bash
